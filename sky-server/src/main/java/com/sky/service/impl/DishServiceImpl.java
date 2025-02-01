@@ -8,7 +8,9 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.entity.SetmealDish;
 import com.sky.exception.DeletionNotAllowedException;
+import com.sky.exception.DishStopFailedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealDishMapper;
@@ -157,6 +159,23 @@ public class DishServiceImpl implements DishService {
         }
 
         return dishVOList;
+    }
+
+    /**
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        SetmealDish setmealDish = setmealDishMapper.getSetmealDishByDishId(id);
+
+        if(setmealDish!=null){
+            throw new DishStopFailedException(MessageConstant.DISH_BE_STOPED_BY_SETMEAL);
+        }
+
+        Dish dish = Dish.builder().id(id).status(status).build();
+
+        dishMapper.update(dish);
     }
 
 
