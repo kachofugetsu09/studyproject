@@ -31,4 +31,20 @@ public interface OrderService {
     OrderVO details(Long id);
 
     void cancelByUser(Long id) throws Exception;
+
+    void repetition(Long id);
+
+    PageResult conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO);
+
+    OrderStatisticsVO statistics();
+
+    void confirm(OrdersConfirmDTO ordersConfirmDTO);
+
+    void rejection(OrdersRejectionDTO ordersRejectionDTO);
+
+    void cancel(OrdersCancelDTO ordersCancelDTO);
+
+    void delivery(Long id);
+
+    void complete(Long id);
 }
