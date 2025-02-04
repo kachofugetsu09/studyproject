@@ -18,6 +18,18 @@
             <if test="updateTime != null">update_time = #{updateTime},</if>
         </set>
     </update>
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id) from setmeal
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+        </where>
+    </select>
+
     <select id="pageQuery" resultType="com.sky.vo.SetmealVO">
         select s.*,c.name as categoryName from setmeal s left outer join sky_take_out.category c
         on s.id = c.id

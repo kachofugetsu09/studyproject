@@ -56,10 +56,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private AddressBookMapper addressBookMapper;
     @Autowired
-    private WeChatPayUtil weChatPayUtil;
-    @Autowired
-    private OrderService orderService;
-    @Autowired
     private WebSocketServer webSocketServer;
 
     /**
